@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  partition_0:
+    image: split_processing_image:latest
+    environment:
+      - PARTITION=0
+    deploy:
+      placement:
+        constraints: [node.labels.type == manager]
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - /mnt/shared:/mnt/shared
+
+  partition_1:
+    image: split_processing_image:latest
+    environment:
+      - PARTITION=1
+    deploy:
+      placement:
+        constraints: [node.labels.type == worker1]
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - /mnt/shared:/mnt/shared
+      
+      
+  partition_2:
+    image: split_processing_image:latest
+    environment:
+      - PARTITION=2
+    deploy:
+      placement:
+        constraints: [node.labels.type == worker2]
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - /mnt/shared:/mnt/shared
+      
