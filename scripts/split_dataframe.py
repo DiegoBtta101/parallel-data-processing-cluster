@@ -10,3 +10,5 @@ df = pd.read_csv('/data/Datos_Hidrometeorologicos.csv')
 df_split = np.array_split(df, 3)
 for i, part in enumerate(df_split):
     part.to_csv(f'/data/df_part_{i}.csv', index=False)
+
+# End
